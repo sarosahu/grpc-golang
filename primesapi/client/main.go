@@ -6,10 +6,11 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	pb "github.com/sarosahu/grpc-golang/greet/proto"
+	pb "github.com/sarosahu/grpc-golang/primesapi/proto"
 )
 
-var addr string = "localhost:50051"
+var addr string = "localhost:50053"
+
 func main() {
 	conn, err := grpc.Dial(addr, grpc.WithTransportCredentials(insecure.NewCredentials()))
 
@@ -19,8 +20,6 @@ func main() {
 
 	defer conn.Close()
 
-	c := pb.NewGreetServiceClient(conn)
-	//doGreet(c)
-
-	doGreetManyTimes(c)
+	c := pb.NewPrimesAPIServiceClient(conn)
+	doPrimes(c)
 }

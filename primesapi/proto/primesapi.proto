@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package primesapi;
+
+option go_package = "github.com/sarosahu/grpc-golang/primesapi/proto";
+
+message PrimesAPIRequest {
+    int32 number = 1;
+}
+
+message PrimesAPIResponse {
+    int32 result = 1;
+}
+
+service PrimesAPIService {
+    rpc Primes(PrimesAPIRequest) returns (stream PrimesAPIResponse);
+}
